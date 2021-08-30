@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "395831132438",
+    "firebase_url": "https://agroecologico-6bd81-default-rtdb.firebaseio.com",
+    "project_id": "agroecologico-6bd81",
+    "storage_bucket": "agroecologico-6bd81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395831132438:android:8ae010f04b66b7229a1037",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395831132438-cepm768f39k4kbt26qijeet6lf1njsd9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP6fDaRNlf3VrpzzitkyE4XG4xzZdzTjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395831132438-cepm768f39k4kbt26qijeet6lf1njsd9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
