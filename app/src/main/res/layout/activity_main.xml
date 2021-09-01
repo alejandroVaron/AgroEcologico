@@ -6,51 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnSignInGoogle"
+        android:layout_width="262dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="@color/greenAgro"
+        android:fontFamily="sans-serif"
+        android:text="Inicia sesión con Google"
+        android:textColor="@android:color/secondary_text_light"
+        app:iconTint="?attr/actionMenuTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignInFacebook" />
+
+    <Button
+        android:id="@+id/btnSignInFacebook"
+        android:layout_width="268dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="@color/white"
+        android:ellipsize="none"
+        android:fontFamily="sans-serif"
+        android:text="Inicia sesión con facebook"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="14sp"
+        app:iconTint="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:text="¿Aún no tienes cuenta?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSignUp" />
+
     <ImageView
         android:id="@+id/ivCompanyImage"
-        android:layout_width="261dp"
-        android:layout_height="177dp"
+        android:layout_width="313dp"
+        android:layout_height="254dp"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="75dp"
         android:contentDescription="Imagen de la empresa agroecologico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@mipmap/logorecortado" />
 
     <TextView
         android:id="@+id/tvCreateUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="178dp"
-        android:text="Login"
+        android:fontFamily="sans-serif"
+        android:text="Inicio de sesión"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCompanyImage" />
 
-    <EditText
-        android:id="@+id/tfName"
+    <Button
+        android:id="@+id/btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCreateUser"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/greenAgro"
+        android:text="Iniciar sesión"
+        app:iconTint="?attr/actionMenuTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tfPassword" />
 
     <EditText
         android:id="@+id/tfPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -58,39 +105,19 @@
         app:layout_constraintTop_toBottomOf="@+id/tfName"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/btnSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="26dp"
-        android:text="sign in"
-        app:layout_constraintEnd_toStartOf="@+id/btnSignUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfPassword" />
-
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="101dp"
-        android:text="Sign up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSignIn"
-        app:layout_constraintTop_toBottomOf="@+id/tfPassword" />
-
     <TextView
         android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="121dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="66dp"
-        android:text="Name"
+        android:fontFamily="sans-serif"
+        android:text="Correo electrónico"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tfName"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCompanyImage" />
 
@@ -98,11 +125,58 @@
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="41dp"
-        android:text="Password"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="80dp"
+        android:fontFamily="sans-serif"
+        android:shadowColor="#A82D2D"
+        android:text="Contraseña"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tfPassword"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <EditText
+        android:id="@+id/tfName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCreateUser"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/greenAgro"
+        android:text="Registrarse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tfPassword" />
+
+    <ImageView
+        android:id="@+id/ivGoogleIcon"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFacebookIcon"
+        app:srcCompat="@drawable/googleg_standard_color_18" />
+
+    <ImageView
+        android:id="@+id/ivFacebookIcon"
+        android:layout_width="59dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="79dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+        app:srcCompat="@mipmap/facebookicon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

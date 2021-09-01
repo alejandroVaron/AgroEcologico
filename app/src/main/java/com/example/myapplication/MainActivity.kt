@@ -16,6 +16,9 @@ import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
@@ -26,10 +29,7 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         auth = Firebase.auth
-        viewBinding.btnSignUp.setOnClickListener {
 
-            startActivity(Intent(this, signUpActivity::class.java))
-        }
         viewBinding.btnSignIn.setOnClickListener{
             val tfNEmail = viewBinding.tfName.text.toString()
             val tfNPassword = viewBinding.tfPassword.text.toString()
@@ -41,8 +41,10 @@ class MainActivity : AppCompatActivity() {
                     signIn(tfNEmail, tfNPassword)
                 }
             }
+        }
+        viewBinding.btnSignUp.setOnClickListener {
 
-
+            startActivity(Intent(this, signUpActivity::class.java))
         }
     }
 
@@ -65,4 +67,29 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, pruebaActivity::class.java)
         this.startActivity(intent)
     }
+/*
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            reload();
+        }
+    }
+
+ */
+/*
+    override fun onDataChange(dataSnapshot: DataSnapshot) {
+        // This method is called once with the initial value and again
+        // whenever data at this location is updated.
+        val value = dataSnapshot.getValue<String>()
+        Log.d("TAG", "Value is: $value")
+    }
+
+    override fun onCancelled(error: DatabaseError) {
+        // Failed to read value
+        Log.w("TAG", "Failed to read value.", error.toException())
+    }
+*/
+
 }
