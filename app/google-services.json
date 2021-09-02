@@ -8,15 +8,19 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:395831132438:android:8ae010f04b66b7229a1037",
+        "mobilesdk_app_id": "1:395831132438:android:613f6b3c690e5ee09a1037",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.agroecologico"
         }
       },
       "oauth_client": [
         {
-          "client_id": "395831132438-cepm768f39k4kbt26qijeet6lf1njsd9.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "395831132438-6ktluduhgkh1ibflg3sb7unb7lvq4fff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.agroecologico",
+            "certificate_hash": "22f46fa95a5e603067308342263a08ed1eff7f0a"
+          }
         }
       ],
       "api_key": [
@@ -26,12 +30,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "395831132438-cepm768f39k4kbt26qijeet6lf1njsd9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

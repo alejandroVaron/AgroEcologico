@@ -1,9 +1,9 @@
-package com.example.myapplication
+package com.example.agroecologico
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.agroecologico.databinding.ActivityMainBinding
 
 class signUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
