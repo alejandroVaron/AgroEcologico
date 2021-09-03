@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".pruebaActivity"
-            android:exported="true" />
+            android:name=".menuActivityAdmin"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.MyActionBar"
+            />
         <activity
             android:name=".signUpActivity"
             android:exported="true"

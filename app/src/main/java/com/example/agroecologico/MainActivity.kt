@@ -57,20 +57,20 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "ENTRÉ!!!! AL BOTÓN")
             Log.d(TAG, "onCreate: begin Google SignIn")
             //configure the google sign in
-            val webApplicationClientId = "395831132438-6ktluduhgkh1ibflg3sb7unb7lvq4fff.apps.googleusercontent.com"
+            val webApplicationClientId = "395831132438-3052cj7tqj1b4tng5lrovgfpf33j0deq.apps.googleusercontent.com"
             val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(webApplicationClientId)
                 .requestEmail() // we need email from google account
                 .build()
             googleClient = GoogleSignIn.getClient(this, googleSignInOptions)
             googleClient.signOut()
-
+            Log.d(TAG, "${googleSignInOptions.serverClientId}")
             startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
         }
 
     }
     /*
-    "client_id": "395831132438-6ktluduhgkh1ibflg3sb7unb7lvq4fff.apps.googleusercontent.com",
+    395831132438-cepm768f39k4kbt26qijeet6lf1njsd9.apps.googleusercontent.com,
     * */
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         if(requestCode == RC_SIGN_IN){
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try{
-                Log.d(TAG, "FirebaseAuthWithGoggle: ${task.getResult(ApiException::class.java)}")
+                Log.d(TAG, "FirebaseAuthWithGoggle: !11!")
                 val account = task.getResult(ApiException::class.java)
                 Log.d(TAG, "FirebaseAuthWithGoggle: "+ account)
                 firebaseAuthWithGoogle(account)
@@ -123,10 +123,10 @@ class MainActivity : AppCompatActivity() {
             }
     }
     private fun reload(){
-        val intent = Intent(this, pruebaActivity::class.java)
+        val intent = Intent(this, menuActivityAdmin::class.java)
         this.startActivity(intent)
     }
-/*
+
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
- */
+
 /*
     override fun onDataChange(dataSnapshot: DataSnapshot) {
         // This method is called once with the initial value and again
