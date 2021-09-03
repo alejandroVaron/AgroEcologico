@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".menuActivityAdmin">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="266dp"
+            android:layout_height="286dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="73dp"
+            android:src="@mipmap/logorecortado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnMarketStall"
+            android:layout_width="199dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="106dp"
+            android:backgroundTint="@color/greenAgro"
+            android:text="Crear puesto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <Button
+            android:id="@+id/btnAddSalesUnit"
+            android:layout_width="199dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="106dp"
+            android:backgroundTint="@color/greenAgro"
+            android:text="Adicionar unidad de venta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMarketStall" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
