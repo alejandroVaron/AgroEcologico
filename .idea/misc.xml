@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Informacion/ss/app/src/main/res/layout/activity_main.xml" value="0.2907608695652174" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_create_market_stall.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_menu_admin.xml" value="0.22" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_menu_admin.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_prueba.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/content_main.xml" value="0.28442028985507245" />
@@ -19,5 +20,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

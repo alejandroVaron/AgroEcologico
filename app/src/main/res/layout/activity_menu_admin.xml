@@ -33,6 +33,7 @@
             android:layout_marginEnd="106dp"
             android:backgroundTint="@color/greenAgro"
             android:text="Crear puesto"
+            android:fontFamily="@font/baloo_thambi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -45,6 +46,7 @@
             android:layout_marginTop="39dp"
             android:layout_marginEnd="106dp"
             android:backgroundTint="@color/greenAgro"
+            android:fontFamily="@font/baloo_thambi"
             android:text="Adicionar unidad de venta"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
