@@ -22,7 +22,7 @@ class addWeightUnit : AppCompatActivity() {
 
             database = Firebase.database.getReference("Unit")
 
-            database.setValue(unitValue).addOnSuccessListener {
+            database.push().setValue(unitValue).addOnSuccessListener {
                 viewBinding.tfUnit.text.clear()
 
                 Toast.makeText(this,"La unidad de venta se almacenó exitosamente", Toast.LENGTH_SHORT).show()
