@@ -10,14 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".addWeightUnit"
+            android:exported="true" />
+        <activity
             android:name=".menuActivityAdmin"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.MyActionBar"
-            />
+            android:theme="@style/Theme.MyApplication.MyActionBar" />
         <activity
             android:name=".signUpActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
