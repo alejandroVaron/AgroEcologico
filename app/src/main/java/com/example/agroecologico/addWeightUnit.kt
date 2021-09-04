@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.agroecologico.databinding.ActivityAddWeightUnitBinding
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class addWeightUnit : AppCompatActivity() {
     private lateinit var viewBinding: ActivityAddWeightUnitBinding
@@ -19,9 +20,9 @@ class addWeightUnit : AppCompatActivity() {
         viewBinding.btnAddUnit.setOnClickListener{
             val unitValue = viewBinding.tfUnit.text.toString()
 
-            database = FirebaseDatabase.getInstance().getReference("Unit")
+            database = Firebase.database.getReference("Unit")
 
-            database.child(unitValue).setValue(unitValue).addOnSuccessListener {
+            database.setValue(unitValue).addOnSuccessListener {
                 viewBinding.tfUnit.text.clear()
 
                 Toast.makeText(this,"La unidad de venta se almacenó exitosamente", Toast.LENGTH_SHORT).show()
