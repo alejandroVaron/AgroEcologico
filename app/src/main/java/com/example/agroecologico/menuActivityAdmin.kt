@@ -1,18 +1,24 @@
 package com.example.agroecologico
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.graphics.toColor
+import com.example.agroecologico.databinding.ActivityMenuAdminBinding
 
 class menuActivityAdmin : AppCompatActivity() {
+    private  lateinit var viewBinding: ActivityMenuAdminBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_admin)
+        viewBinding = ActivityMenuAdminBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+
+        viewBinding.btnAddSalesUnit.setOnClickListener{
+            val intent = Intent(this, addWeightUnit::class.java)
+            this.startActivity(intent)
+        }
 
     }
 
