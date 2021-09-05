@@ -10,14 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".createMarketStallActivity"
-            android:exported="true" />
+            android:name=".AddWeightUnit"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
-            android:name=".menuActivityAdmin"
+            android:name=".CreateMarketStallActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".MenuActivityAdmin"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.MyActionBar" />
         <activity
-            android:name=".signUpActivity"
+            android:name=".SignUpActivity"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity

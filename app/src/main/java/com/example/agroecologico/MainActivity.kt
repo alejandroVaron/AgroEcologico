@@ -9,13 +9,8 @@ import com.example.agroecologico.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -58,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         // OnClickListener of sign up button
         viewBinding.btnSignUp.setOnClickListener {
 
-            startActivity(Intent(this, signUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
         viewBinding.btnSignInGoogle.setOnClickListener{
@@ -93,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Pasé al metodo onSignInResult")
             Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
             val user = FirebaseAuth.getInstance().currentUser
-            startActivity(Intent(this, menuActivityAdmin::class.java))
+            startActivity(Intent(this, MenuActivityAdmin::class.java))
             // ...
         } else {
             Log.d(TAG, "No se pudo hacer la conexión con google")
@@ -102,12 +97,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signIn (email: String, password : String ){
+        auth.signOut()
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("TAG", "signInWithEmail:success")
                     val user = auth.currentUser
-                    startActivity(Intent(this, menuActivityAdmin::class.java))
+                    startActivity(Intent(this, MenuActivityAdmin::class.java))
                     //reload()
                 } else {
                     // If sign in fails, display a message to the user.
@@ -119,7 +115,7 @@ class MainActivity : AppCompatActivity() {
     }
     /*
     private fun reload(){
-        val intent = Intent(this, menuActivityAdmin::class.java)
+        val intent = Intent(this, MenuActivityAdmin::class.java)
         this.startActivity(intent)
     }
     */

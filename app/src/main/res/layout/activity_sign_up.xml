@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-    tools:context=".signUpActivity">
+    tools:context=".SignUpActivity">
 
     <Button
         android:id="@+id/btnSignInRegister"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/greenAgro"
+        android:backgroundTint="@color/agroecologicoColor"
         android:fontFamily="@font/baloo_thambi"
         android:text="Iniciar sesión"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,10 +133,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="210dp"
-        android:layout_height="261dp"
-        android:layout_marginStart="100dp"
+        android:layout_width="240dp"
+        android:layout_height="260dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="87dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/logorecortado" />
@@ -147,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="136dp"
-        android:backgroundTint="@color/greenAgro"
+        android:backgroundTint="@color/agroecologicoColor"
         android:fontFamily="@font/baloo_thambi"
         android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="parent"
