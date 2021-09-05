@@ -1,4 +1,5 @@
 <resources>
+    <string name="default_web_client_id" translatable="false">395831132438-3052cj7tqj1b4tng5lrovgfpf33j0deq.apps.googleusercontent.com</string>
     <string name="app_name">agroecologico</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->

@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.example.agroecologico.databinding.ActivityMenuAdminBinding
+class MenuActivityAdmin : AppCompatActivity() {
 
-class menuActivityAdmin : AppCompatActivity() {
     private  lateinit var viewBinding: ActivityMenuAdminBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,11 +16,15 @@ class menuActivityAdmin : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         viewBinding.btnAddSalesUnit.setOnClickListener{
-            val intent = Intent(this, addWeightUnit::class.java)
-            this.startActivity(intent)
+            startActivity(Intent(this, AddWeightUnit::class.java))
+        }
+
+        viewBinding.btnMarketStall.setOnClickListener{
+            startActivity(Intent(this, CreateMarketStallActivity::class.java))
         }
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.overflowmenu, menu)
@@ -30,7 +34,7 @@ class menuActivityAdmin : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return  when(item.itemId){
             R.id.itemSignout-> {
-                //startActivity(Intent(this, ))
+                startActivity(Intent(this, MainActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

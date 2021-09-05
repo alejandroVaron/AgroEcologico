@@ -20,7 +20,7 @@
     </style>
 
     <style name="Theme.MyApplication.MyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/greenAgro</item>
+        <item name="colorPrimary">@color/agroecologicoColor</item>
     </style>
 
     <style name="MyActionBarTitle" parent="Theme.AppCompat.Light.DarkActionBar">

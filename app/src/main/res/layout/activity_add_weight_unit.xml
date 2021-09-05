@@ -4,20 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addWeightUnit"
-    android:background="@drawable/backgroundagroecologico">
+    android:background="@mipmap/agroecologicobackground"
+    tools:context=".AddWeightUnit">
 
     <TextView
         android:id="@+id/tvAddUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/baloo_thambi"
         android:text="Añadir Unidad de Venta"
-        android:textSize="50px"
         android:textColor="@color/black"
-        android:background="@color/white"
+        android:textSize="70px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,12 +24,14 @@
         android:id="@+id/tfUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="124dp"
         android:ems="10"
+        android:fontFamily="@font/baloo_thambi"
+        android:hint="Unidad de venta (ej. libra)"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Unida de venta (ej. libra)"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvAddUnit" />
 
@@ -38,11 +39,13 @@
         android:id="@+id/btnAddUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/baloo_thambi"
         android:text="Adicionar"
         android:textColor="@color/brown"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tfUnit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
