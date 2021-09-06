@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".MenuActivitySalesPerson"
+            android:exported="true" />
+        <activity
             android:name=".AddWeightUnit"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".CreateMarketStallActivity"
             android:exported="true"
