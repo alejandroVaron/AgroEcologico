@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.agroecologico.Models.MarketStall
+import com.example.agroecologico.Models.Product
 import com.example.agroecologico.databinding.ActivityCreateMarketStallBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -30,7 +32,7 @@ class CreateMarketStallActivity : AppCompatActivity() {
         val password = viewBinding.etPasswordMarketStall.text.toString()
         val identification = viewBinding.etUsetIdentification.text.toString()
 
-        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, "", "", "")
+        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, mutableListOf<Product>(),"", "", "")
 
         database.child(identification).setValue(marketStall).addOnSuccessListener {
 
