@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Puesto de venta">
+        <menu>
+            <item
+                android:id="@+id/itemMarketStall"
+                android:icon="@drawable/ic_marketstall"
+                android:title="Puesto de venta">
+            </item>
+            <item
+                android:id="@+id/itemAddProduct"
+                android:icon="@drawable/ic_addproduct"
+                android:title="Añadir producto">
+            </item>
+            <item
+                android:id="@+id/itemEditMarketStall"
+                android:icon="@drawable/ic_editmarketstall"
+                android:title="Editar puesto de venta">
+            </item>
+        </menu>
+    </item>
+    <item android:title="Perfil">
+        <menu>
+            <item
+                android:id="@+id/itemEditProfile"
+                android:icon="@drawable/ic_editprofile"
+                android:title="Editar perfil">
+            </item>
+            <item
+                android:id="@+id/itemSignOutProfile"
+                android:icon="@drawable/ic_signout"
+                android:title="Cerrar sesión">
+            </item>
+        </menu>
+    </item>
+</menu>

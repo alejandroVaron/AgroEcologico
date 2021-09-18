@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.agroecologico">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,8 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".MenuActivitySalesPerson"
+            android:name=".NavigationDrawerActivity"
             android:exported="true" />
+        <activity
+            android:name=".MenuActivitySalesPerson"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".AddWeightUnit"
             android:exported="true"
@@ -44,5 +47,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 </manifest>
