@@ -139,11 +139,6 @@ class MenuActivitySalesPerson : AppCompatActivity() {
         actionBarDrawerToggle.syncState()
     }
 
-    fun toastManual(msg: String){
-        Log.d("aiuda", msg)
-        Toast.makeText(this, "El puesto de venta se ha añadido exitosamente", Toast.LENGTH_SHORT ).show()
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
     }

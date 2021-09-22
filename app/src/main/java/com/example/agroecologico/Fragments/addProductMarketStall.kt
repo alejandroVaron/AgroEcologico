@@ -1,6 +1,7 @@
 package com.example.agroecologico.Fragments
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -23,6 +24,7 @@ import com.example.agroecologico.Models.Product
 import com.example.agroecologico.R
 import com.example.agroecologico.databinding.FragmentAddProductMarketStallBinding
 import com.example.agroecologico.databinding.FragmentMarketStallPersonBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -30,7 +32,7 @@ import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.util.*
 
-class addProductMarketStall : Fragment() {
+class addProductMarketStall() : Fragment() {
     private var _binding: FragmentAddProductMarketStallBinding? = null
     private val binding get() = _binding!!
     private lateinit var spinner : Spinner
@@ -39,10 +41,13 @@ class addProductMarketStall : Fragment() {
     private lateinit var photoProduct: String
     lateinit var marketStallPersonInFrag: MarketStall
     private lateinit var databaseMarket: DatabaseReference
+    private lateinit var contextAct: Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance().getReference("Unit")
         databaseMarket = FirebaseDatabase.getInstance().getReference("MarketStall")
+
     }
 
     override fun onCreateView(
@@ -56,7 +61,6 @@ class addProductMarketStall : Fragment() {
         val model: ItemViewModel by activityViewModels()
         // Method to bring the marketStall from the activity
         model.getMarketStall().observe(this, Observer<MarketStall>{ marketStall ->
-            Log.d("aiuda", "Entré en el viewModel: ")
             marketStallPersonInFrag = marketStall
         })
 
@@ -130,8 +134,7 @@ class addProductMarketStall : Fragment() {
         databaseMarket.child("${marketStallPersonInFrag.identification}").child("products").child("${UUID.randomUUID().toString()}")
             .setValue(product).addOnSuccessListener {
                 clear()
-                Toast.makeText(activity!!.applicationContext,"El puesto de venta se ha añadido exitosamente", Toast.LENGTH_SHORT).show()
-                //(activity as MenuActivitySalesPerson).toastManual("holaaa")
+                Snackbar.make(binding.ivImageProduct, "Se ha agregado el producto exitosamente", Snackbar.LENGTH_SHORT).show()
             }.addOnFailureListener{
                 Toast.makeText(this@addProductMarketStall.requireActivity(),"El producto no pudo ser añadido", Toast.LENGTH_SHORT).show()
             }
