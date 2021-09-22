@@ -43,17 +43,10 @@ class marketStallPersonFragment : Fragment() {
     }
 
     private fun bringData(){
-        var marketStall: String = "El puesto de venta es: "+"\n"+
-                "cellphone: ${marketStallPersonInFrag.cellphone}"+"\n"+
-                "email: ${marketStallPersonInFrag.email}"+"\n"+
-                "identification: ${marketStallPersonInFrag.identification}"+"\n"+
-                "nameMarketStall: ${marketStallPersonInFrag.nameMarketStall}"+"\n"+
-                "password: ${marketStallPersonInFrag.password}"+"\n"+
-                "salesPersonName: ${marketStallPersonInFrag.salesPersonName}"+"\n"+
-                "salesPersonPhoto: ${marketStallPersonInFrag.salesPersonPhoto}"+"\n"+
-                "terrainPhoto: ${marketStallPersonInFrag.terrainPhoto}"
-        binding.tvEjemplo.setText(marketStallPersonInFrag.email)
-        binding.tvFragmentTextView.setText(marketStall)
+        binding.tvMarketStallName.setText("nameMarketStall: ${marketStallPersonInFrag.nameMarketStall}")
+        binding.tvWorkerId.setText("identification: ${marketStallPersonInFrag.identification}")
+        binding.tvCellphoneWorker.setText("cellphone: ${marketStallPersonInFrag.cellphone}")
+        binding.tvEmailWorker.setText("email: ${marketStallPersonInFrag.email}")
     }
 
     override fun onDestroyView() {
