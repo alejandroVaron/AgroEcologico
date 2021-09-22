@@ -8,6 +8,11 @@
                 android:title="Puesto de venta">
             </item>
             <item
+                android:id="@+id/itemSalesWorker"
+                android:icon="@drawable/ic_editprofile"
+                android:title="Trabajadores">
+            </item>
+            <item
                 android:id="@+id/itemAddProduct"
                 android:icon="@drawable/ic_addproduct"
                 android:title="Añadir producto">

@@ -14,8 +14,12 @@ import com.example.agroecologico.databinding.FragmentMarketStallPersonBinding
 
 
 class marketStallPersonFragment : Fragment() {
+
+    // En este objeto se encuentra el puesto de venta del trabajador
     lateinit var marketStallPersonInFrag: MarketStall
+
     private var _binding: FragmentMarketStallPersonBinding? = null
+
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +32,6 @@ class marketStallPersonFragment : Fragment() {
     ): View? {
         _binding = FragmentMarketStallPersonBinding.inflate(inflater, container, false)
         val view = binding.root
-
         val model: ItemViewModel by activityViewModels()
         // Method to bring the marketStall from the activity
         model.getMarketStall().observe(this, Observer<MarketStall>{ marketStall ->
@@ -36,7 +39,6 @@ class marketStallPersonFragment : Fragment() {
             marketStallPersonInFrag = marketStall
             bringData()
         })
-
         return view
     }
 
@@ -50,6 +52,7 @@ class marketStallPersonFragment : Fragment() {
                 "salesPersonName: ${marketStallPersonInFrag.salesPersonName}"+"\n"+
                 "salesPersonPhoto: ${marketStallPersonInFrag.salesPersonPhoto}"+"\n"+
                 "terrainPhoto: ${marketStallPersonInFrag.terrainPhoto}"
+        binding.tvEjemplo.setText(marketStallPersonInFrag.email)
         binding.tvFragmentTextView.setText(marketStall)
     }
 

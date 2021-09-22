@@ -10,17 +10,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <include
             android:id="@+id/includeToolbar"
             layout="@layout/drawer_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></include>
+
         <include
             layout="@layout/content_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/includeToolbar">
-        </include>
+            android:layout_below="@+id/includeToolbar"></include>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -74,6 +74,16 @@ class MenuActivitySalesPerson : AppCompatActivity() {
                     model.setMarketStall(marketStallPerson)
                     true
                 }
+                R.id.itemSalesWorker -> {
+                    viewBinding.drawer.closeDrawer(GravityCompat.START)
+                    fragmentManagerInit = getSupportFragmentManager()
+                    fragmentTransaction = fragmentManagerInit.beginTransaction()
+                    fragmentTransaction.replace(R.id.container, marketStallPersonFragment())
+                    fragmentTransaction.commit()
+                    val model: ItemViewModel by viewModels()
+                    model.setMarketStall(marketStallPerson)
+                    true
+                }
                 else -> false
             }
         }
