@@ -17,4 +17,8 @@
     <string name="close">close</string>
     <string name="market_stall_title">Puesto de Venta</string>
     <string name="btn_edit">Editar</string>
+    <string name="market_stall_label">Nombre Puesto:</string>
+    <string name="id_worker_label">ID</string>
+    <string name="cellphone_label">Celular</string>
+    <string name="email_label">Correo</string>
 </resources>

@@ -43,10 +43,10 @@ class marketStallPersonFragment : Fragment() {
     }
 
     private fun bringData(){
-        binding.tvMarketStallName.setText("nameMarketStall: ${marketStallPersonInFrag.nameMarketStall}")
-        binding.tvWorkerId.setText("identification: ${marketStallPersonInFrag.identification}")
-        binding.tvCellphoneWorker.setText("cellphone: ${marketStallPersonInFrag.cellphone}")
-        binding.tvEmailWorker.setText("email: ${marketStallPersonInFrag.email}")
+        binding.tvMarketStallName.setText("Nombre Puesto: ${marketStallPersonInFrag.nameMarketStall}")
+        binding.tvWorkerId.setText("ID: ${marketStallPersonInFrag.identification}")
+        binding.tvCellphoneWorker.setText("Celular: ${marketStallPersonInFrag.cellphone}")
+        binding.tvEmailWorker.setText("Correo: ${marketStallPersonInFrag.email}")
     }
 
     override fun onDestroyView() {

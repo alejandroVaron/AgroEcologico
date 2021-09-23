@@ -14,10 +14,11 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="163dp"
+            android:layout_height="41dp"
             android:layout_marginTop="48dp"
             android:text="@string/market_stall_title"
+            app:layout_constraintBottom_toTopOf="@+id/ivTerrainPhoto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,14 +35,24 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
+            android:id="@+id/tvMarketLabel"
+            android:layout_width="75dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/market_stall_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivTerrainPhoto" />
+
+        <TextView
             android:id="@+id/tvMarketStallName"
-            android:layout_width="59dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="19dp"
+            android:layout_width="164dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintEnd_toStartOf="@+id/btnMarketStallName"
-            app:layout_constraintHorizontal_bias="0.903"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintStart_toEndOf="@+id/tvMarketLabel"
             app:layout_constraintTop_toBottomOf="@+id/ivTerrainPhoto" />
 
         <Button
@@ -51,41 +62,74 @@
             android:layout_marginTop="8dp"
             android:text="@string/btn_edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.638"
+            app:layout_constraintHorizontal_bias="0.869"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivTerrainPhoto" />
+
+        <TextView
+            android:id="@+id/tvIdWorkerLabel"
+            android:layout_width="77dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/id_worker_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMarketLabel" />
 
         <TextView
             android:id="@+id/tvWorkerId"
-            android:layout_width="67dp"
-            android:layout_height="11dp"
-            android:layout_marginTop="96dp"
+            android:layout_width="237dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="84dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.744"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivTerrainPhoto" />
 
         <TextView
-            android:id="@+id/tvCellphoneWorker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tvCellphoneLabel"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="44dp"
             android:layout_marginTop="24dp"
+            android:text="@string/cellphone_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIdWorkerLabel" />
+
+        <TextView
+            android:id="@+id/tvCellphoneWorker"
+            android:layout_width="240dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="20dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.722"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWorkerId" />
 
         <TextView
-            android:id="@+id/tvEmailWorker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            android:id="@+id/tvEmailLabel"
+            android:layout_width="77dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/email_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCellphoneWorker" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCellphoneLabel" />
+
+        <TextView
+            android:id="@+id/tvEmailWorker"
+            android:layout_width="240dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCellphoneWorker"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
