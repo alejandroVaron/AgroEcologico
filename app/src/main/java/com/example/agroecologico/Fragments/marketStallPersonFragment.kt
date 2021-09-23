@@ -1,5 +1,7 @@
 package com.example.agroecologico.Fragments
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,10 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.agroecologico.ItemViewModel
 import com.example.agroecologico.Models.MarketStall
 import com.example.agroecologico.databinding.FragmentMarketStallPersonBinding
-
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.IOException
 
 class marketStallPersonFragment : Fragment() {
 
@@ -21,6 +27,8 @@ class marketStallPersonFragment : Fragment() {
     private var _binding: FragmentMarketStallPersonBinding? = null
 
     private val binding get() = _binding!!
+
+    private var firebaseSto: FirebaseStorage = FirebaseStorage.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +46,28 @@ class marketStallPersonFragment : Fragment() {
             Log.d("aiuda", "Entré en el viewModel: ")
             marketStallPersonInFrag = marketStall
             bringData()
+            downloadImage()
         })
         return view
     }
 
     private fun bringData(){
-        binding.tvMarketStallName.setText("Nombre Puesto: ${marketStallPersonInFrag.nameMarketStall}")
-        binding.tvWorkerId.setText("ID: ${marketStallPersonInFrag.identification}")
-        binding.tvCellphoneWorker.setText("Celular: ${marketStallPersonInFrag.cellphone}")
-        binding.tvEmailWorker.setText("Correo: ${marketStallPersonInFrag.email}")
+        binding.tvMarketStallName.setText(marketStallPersonInFrag.nameMarketStall)
+        binding.tvWorkerId.setText(marketStallPersonInFrag.identification)
+        binding.tvCellphoneWorker.setText(marketStallPersonInFrag.cellphone)
+        binding.tvEmailWorker.setText(marketStallPersonInFrag.email)
+    }
+
+    private fun downloadImage(){
+        var photo: String = marketStallPersonInFrag.terrainPhoto!!
+        try{
+            Glide.with(this)
+                .load(photo)
+                .centerCrop()
+                .into(binding.ivTerrainPhoto)
+        }catch (err: IOException){
+            Log.d("aiuda", "$err")
+        }
     }
 
     override fun onDestroyView() {

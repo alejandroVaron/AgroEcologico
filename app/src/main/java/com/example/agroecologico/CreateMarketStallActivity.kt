@@ -31,8 +31,8 @@ class CreateMarketStallActivity : AppCompatActivity() {
         val email = viewBinding.etEmailMarketStall.text.toString()
         val password = viewBinding.etPasswordMarketStall.text.toString()
         val identification = viewBinding.etUsetIdentification.text.toString()
-
-        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, mutableListOf<Product>(),"", "", "")
+        val terrainPhoto: String = "https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/terrainPhotos%2Fdefault_photo.png?alt=media&token=e73faf2f-c51b-4d41-a15a-9ca023eefd18"
+        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, mutableListOf<Product>(),terrainPhoto, "", "")
 
         database.child(identification).setValue(marketStall).addOnSuccessListener {
 

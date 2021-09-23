@@ -20,7 +20,9 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.agroecologico.Fragments.addProductMarketStall
+import com.example.agroecologico.Fragments.editMarketStallFragment
 import com.example.agroecologico.Fragments.marketStallPersonFragment
+import com.example.agroecologico.Fragments.salesPersonFragment
 import com.example.agroecologico.Models.MarketStall
 import com.example.agroecologico.Models.Product
 import com.example.agroecologico.databinding.ActivityMenuAdminBinding
@@ -78,10 +80,18 @@ class MenuActivitySalesPerson : AppCompatActivity() {
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
-                    fragmentTransaction.replace(R.id.container, marketStallPersonFragment())
+                    fragmentTransaction.replace(R.id.container, salesPersonFragment())
                     fragmentTransaction.commit()
                     val model: ItemViewModel by viewModels()
                     model.setMarketStall(marketStallPerson)
+                    true
+                }
+                R.id.itemEditMarketStall -> {
+                    viewBinding.drawer.closeDrawer(GravityCompat.START)
+                    fragmentManagerInit = getSupportFragmentManager()
+                    fragmentTransaction = fragmentManagerInit.beginTransaction()
+                    fragmentTransaction.replace(R.id.container, editMarketStallFragment())
+                    fragmentTransaction.commit()
                     true
                 }
                 else -> false
