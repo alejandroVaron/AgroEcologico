@@ -27,6 +27,11 @@
                 android:icon="@drawable/ic_editmarketstall"
                 android:title="Editar puesto de venta">
             </item>
+            <item
+                android:id="@+id/itemAddSalesPerson"
+                android:icon="@drawable/ic_editmarketstall"
+                android:title="Añadir Vendedor">
+            </item>
         </menu>
     </item>
     <item android:title="Perfil">

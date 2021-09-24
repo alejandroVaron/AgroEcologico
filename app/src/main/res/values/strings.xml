@@ -21,4 +21,6 @@
     <string name="id_worker_label">ID</string>
     <string name="cellphone_label">Celular</string>
     <string name="email_label">Correo</string>
+    <string name="add_sales_person_text">Añadir Vendedor</string>
+    <string name="add_label">Añadir</string>
 </resources>
