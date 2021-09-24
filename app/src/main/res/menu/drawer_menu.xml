@@ -13,9 +13,14 @@
                 android:title="Trabajadores">
             </item>
             <item
+                android:id="@+id/itemProduct"
+                android:icon="@drawable/ic_addproduct"
+                android:title="Productos">
+            </item>
+            <item
                 android:id="@+id/itemAddProduct"
                 android:icon="@drawable/ic_addproduct"
-                android:title="Añadir producto">
+                android:title="Añadir productos">
             </item>
             <item
                 android:id="@+id/itemEditMarketStall"

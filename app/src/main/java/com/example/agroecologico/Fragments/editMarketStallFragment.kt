@@ -19,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.agroecologico.ItemViewModel
+import com.example.agroecologico.MenuActivitySalesPerson
 import com.example.agroecologico.Models.MarketStall
 import com.example.agroecologico.Models.Product
 import com.example.agroecologico.R
@@ -97,24 +98,38 @@ class editMarketStallFragment : Fragment() {
         var name: String = binding.etChangeName.text.toString()
         var identification: String = marketStallPersonInFrag.identification!!
 
-        var marketStall: MarketStall = MarketStall(name,
+        val marketStallP: MarketStall = MarketStall(name,
             marketStallPersonInFrag.email,
             marketStallPersonInFrag.password,
             marketStallPersonInFrag.identification,
             marketStallPersonInFrag.cellphone,
             marketStallPersonInFrag.products,
+            marketStallPersonInFrag.workers,
             photoMarketStall,
             marketStallPersonInFrag.salesPersonName,
             marketStallPersonInFrag.salesPersonPhoto)
 
-        databaseMarket.child(identification).setValue(marketStall).addOnSuccessListener {
-            binding.etChangeName.text.clear()
-            boolImage = false
-            Snackbar.make(binding.ivImageMarketStall, "El puesto de venta se editó con éxito", Snackbar.LENGTH_SHORT).show()
+        Log.d("aiuda", "1- Estos son los productos: ${marketStallP.products}")
+
+        databaseMarket.child(identification).child("nameMarketStall").setValue(marketStallP.nameMarketStall).addOnSuccessListener {
+            databaseMarket.child(identification).child("terrainPhoto").setValue(marketStallP.terrainPhoto).addOnSuccessListener {
+                binding.etChangeName.text.clear()
+                sendMarketStall(marketStallP.nameMarketStall!!, marketStallP.terrainPhoto!!)
+
+            }.addOnFailureListener{
+                Snackbar.make(binding.ivImageMarketStall, "No se ha podido editar el puesto de venta", Snackbar.LENGTH_SHORT).show()
+            }
+            sendMarketStall(marketStallP.nameMarketStall!!, marketStallP.terrainPhoto!!)
         }.addOnFailureListener{
             Snackbar.make(binding.ivImageMarketStall, "No se ha podido editar el puesto de venta", Snackbar.LENGTH_SHORT).show()
         }
+    }
 
+    private fun sendMarketStall(name: String, photoMarketStall: String){
+        Log.d("aiuda","2- Estos son los productos: ${marketStallPersonInFrag.products}")
+        marketStallPersonInFrag.nameMarketStall = name
+        marketStallPersonInFrag.terrainPhoto = photoMarketStall
+        (activity as MenuActivitySalesPerson).setMarketStall(marketStallPersonInFrag)
     }
 
     fun sendPhotoStorage(){

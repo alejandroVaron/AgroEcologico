@@ -6,6 +6,7 @@ data class MarketStall(var nameMarketStall : String? = null,
                        var identification : String? = null,
                        var cellphone : String? = null,
                        var products : MutableList<Product>? = null,
+                       var workers : MutableList<SalesPerson>? = null,
                        var terrainPhoto : String? = null,
                        var salesPersonName : String? = null,
                        var salesPersonPhoto : String? = null)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.agroecologico.Models.MarketStall
 import com.example.agroecologico.Models.Product
+import com.example.agroecologico.Models.SalesPerson
 import com.example.agroecologico.databinding.ActivityCreateMarketStallBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -32,7 +33,7 @@ class CreateMarketStallActivity : AppCompatActivity() {
         val password = viewBinding.etPasswordMarketStall.text.toString()
         val identification = viewBinding.etUsetIdentification.text.toString()
         val terrainPhoto: String = "https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/terrainPhotos%2Fdefault_photo.png?alt=media&token=e73faf2f-c51b-4d41-a15a-9ca023eefd18"
-        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, mutableListOf<Product>(),terrainPhoto, "", "")
+        val marketStall = MarketStall(marketStallName, email, password, identification, cellphone, mutableListOf<Product>(), mutableListOf<SalesPerson>(),terrainPhoto, "", "")
 
         database.child(identification).setValue(marketStall).addOnSuccessListener {
 

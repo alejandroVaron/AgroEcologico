@@ -3,11 +3,14 @@ package com.example.agroecologico
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.os.AsyncTask
+import android.os.AsyncTask.execute
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -18,18 +21,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.agroecologico.Fragments.addProductMarketStall
-import com.example.agroecologico.Fragments.editMarketStallFragment
-import com.example.agroecologico.Fragments.marketStallPersonFragment
-import com.example.agroecologico.Fragments.salesPersonFragment
+import com.example.agroecologico.Fragments.*
 import com.example.agroecologico.Models.MarketStall
 import com.example.agroecologico.Models.Product
 import com.example.agroecologico.databinding.ActivityMenuAdminBinding
 import com.example.agroecologico.databinding.ActivityMenuSalesPersonBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MenuActivitySalesPerson : AppCompatActivity() {
@@ -42,6 +45,7 @@ class MenuActivitySalesPerson : AppCompatActivity() {
     private lateinit var fragmentManagerInit: FragmentManager
     private lateinit var fragmentTransaction: FragmentTransaction
     private lateinit var database: DatabaseReference
+    private var databaseManager: DatabaseManager = DatabaseManager()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMenuSalesPersonBinding.inflate(layoutInflater)
@@ -56,65 +60,77 @@ class MenuActivitySalesPerson : AppCompatActivity() {
         // Initialize the principal fragment
         initFragment()
 
+
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
+                R.id.itemProduct -> {
+                    val model: ItemViewModel by viewModels()
+                    model.setMarketStall(marketStallPerson)
+                    viewBinding.drawer.closeDrawer(GravityCompat.START)
+                    fragmentManagerInit = getSupportFragmentManager()
+                    fragmentTransaction = fragmentManagerInit.beginTransaction()
+                    fragmentTransaction.replace(R.id.container, productMarketStallFragment())
+                    fragmentTransaction.commit()
+                    toolbar.title = "Productos"
+                    hideSoftKeyboard()
+
+                    true
+                }
                 R.id.itemAddProduct -> {
+                    val model: ItemViewModel by viewModels()
+                    Log.d("aiuda", "( Al presionar el botón add )- Estos son los productos: ${marketStallPerson.products}")
+                    model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, addProductMarketStall())
                     fragmentTransaction.commit()
+                    toolbar.title = "Productos"
+                    hideSoftKeyboard()
+
                     true
                 }
                 R.id.itemMarketStall -> {
+                    val model: ItemViewModel by viewModels()
+                    Log.d("aiuda", "( Al presionar el botón marketStall )- Estos son los productos: ${marketStallPerson.products}")
+                    model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, marketStallPersonFragment())
                     fragmentTransaction.commit()
-                    val model: ItemViewModel by viewModels()
-                    model.setMarketStall(marketStallPerson)
+                    toolbar.title = "Puesto de venta"
+                    hideSoftKeyboard()
                     true
                 }
                 R.id.itemSalesWorker -> {
+                    val model: ItemViewModel by viewModels()
+                    model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, salesPersonFragment())
                     fragmentTransaction.commit()
-                    val model: ItemViewModel by viewModels()
-                    model.setMarketStall(marketStallPerson)
+                    toolbar.title = "Trabajadores"
+                    hideSoftKeyboard()
                     true
                 }
                 R.id.itemEditMarketStall -> {
+                    val model: ItemViewModel by viewModels()
+                    Log.d("aiuda", "( Al presionar el botón EditmarketStall )- Estos son los productos: ${marketStallPerson.products}")
+                    model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, editMarketStallFragment())
                     fragmentTransaction.commit()
+                    toolbar.title = "Editar puesto de venta"
+                    hideSoftKeyboard()
                     true
                 }
                 else -> false
             }
         }
-        /*
-
-        <uses-permission android:name="android.permission.CAMERA" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                0
-            )
-        }
-        */
-
     }
     private fun bringMarketStall(){
         marketStallPerson = MarketStall(cellphone = intent.getStringExtra("cellphone").toString(),
@@ -126,6 +142,12 @@ class MenuActivitySalesPerson : AppCompatActivity() {
             salesPersonName = intent.getStringExtra("salesPersonName").toString(),
             salesPersonPhoto = intent.getStringExtra("salesPersonPhoto").toString(),
             terrainPhoto= intent.getStringExtra("terrainPhoto").toString())
+
+        databaseManager.getMarketStall(marketStallPerson.identification!!)
+        GlobalScope.launch(Dispatchers.IO) {
+            marketStallPerson.products = databaseManager.getProducts(marketStallPerson.identification!!)
+            marketStallPerson.workers = databaseManager.getSalesPerson(marketStallPerson.identification!!)
+        }
     }
     // Initialize the principal fragment
     private fun initFragment(){
@@ -137,10 +159,20 @@ class MenuActivitySalesPerson : AppCompatActivity() {
         model.setMarketStall(marketStallPerson)
     }
 
+    fun hideSoftKeyboard() {
+        if (currentFocus != null) {
+            val inputMethodManager: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+    }
+
     // Initialize the navegation drawer component
     private fun initNavegationDrawer(){
         toolbar = findViewById(R.id.toolbar)
+        toolbar.title = "Puesto de venta"
         setSupportActionBar(toolbar)
+        toolbar.title = "Puesto de venta"
         drawerLayout = findViewById(R.id.drawer)
         navigationView = findViewById(R.id.navigationView)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
@@ -152,5 +184,12 @@ class MenuActivitySalesPerson : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+
+    fun setMarketStall(marketStall: MarketStall){
+        marketStallPerson = marketStall
+        Log.d("aiuda", "( En la actividad menuActivitySalesPerson )- Estos son los productos: ${marketStallPerson.products}")
+    }
+
 }
 

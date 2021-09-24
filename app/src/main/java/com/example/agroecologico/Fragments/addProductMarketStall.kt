@@ -41,12 +41,15 @@ class addProductMarketStall() : Fragment() {
     private lateinit var photoProduct: String
     lateinit var marketStallPersonInFrag: MarketStall
     private lateinit var databaseMarket: DatabaseReference
-    private lateinit var contextAct: Context
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance().getReference("Unit")
         databaseMarket = FirebaseDatabase.getInstance().getReference("MarketStall")
+        val model: ItemViewModel by activityViewModels()
+        // Method to bring the marketStall from the activity
+        model.getMarketStall().observe(this, Observer<MarketStall>{ marketStall ->
+            marketStallPersonInFrag = marketStall
+        })
 
     }
 
@@ -57,12 +60,6 @@ class addProductMarketStall() : Fragment() {
         _binding = FragmentAddProductMarketStallBinding.inflate(inflater, container, false)
         val view = binding.root
         spinner = binding.spinnerUnitSaler
-
-        val model: ItemViewModel by activityViewModels()
-        // Method to bring the marketStall from the activity
-        model.getMarketStall().observe(this, Observer<MarketStall>{ marketStall ->
-            marketStallPersonInFrag = marketStall
-        })
 
         val adapter = activity?.let {
             ArrayAdapter<String>(
