@@ -72,9 +72,7 @@ class DatabaseManager {
         var products: MutableList<Product> = arrayListOf()
         var product: Product = Product()
         database = FirebaseDatabase.getInstance().getReference("MarketStall")
-
         val query = database.child(identification)
-
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(dataSnapshot.exists()){
@@ -86,9 +84,11 @@ class DatabaseManager {
                         products.add(product)
                     }
                 }
+
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d("", databaseError.getMessage()) //Don't ignore errors!
+
             }
         }
 

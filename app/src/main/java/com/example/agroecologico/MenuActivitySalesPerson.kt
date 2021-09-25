@@ -48,7 +48,6 @@ class MenuActivitySalesPerson : AppCompatActivity() {
         // Initialize the principal fragment
         initFragment()
 
-
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.itemProduct -> {
@@ -66,21 +65,19 @@ class MenuActivitySalesPerson : AppCompatActivity() {
                 }
                 R.id.itemAddProduct -> {
                     val model: ItemViewModel by viewModels()
-                    Log.d("aiuda", "( Al presionar el botón add )- Estos son los productos: ${marketStallPerson.products}")
                     model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, addProductMarketStall())
                     fragmentTransaction.commit()
-                    toolbar.title = "Productos"
+                    toolbar.title = "Añadir producto"
                     hideSoftKeyboard()
 
                     true
                 }
                 R.id.itemMarketStall -> {
                     val model: ItemViewModel by viewModels()
-                    Log.d("aiuda", "( Al presionar el botón marketStall )- Estos son los productos: ${marketStallPerson.products}")
                     model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
@@ -105,7 +102,6 @@ class MenuActivitySalesPerson : AppCompatActivity() {
                 }
                 R.id.itemEditMarketStall -> {
                     val model: ItemViewModel by viewModels()
-                    Log.d("aiuda", "( Al presionar el botón EditmarketStall )- Estos son los productos: ${marketStallPerson.products}")
                     model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
@@ -118,14 +114,13 @@ class MenuActivitySalesPerson : AppCompatActivity() {
                 }
                 R.id.itemAddSalesPerson -> {
                     val model: ItemViewModel by viewModels()
-                    Log.d("aiuda", "( Al presionar el botón add )- Estos son los productos: ${marketStallPerson.products}")
                     model.setMarketStall(marketStallPerson)
                     viewBinding.drawer.closeDrawer(GravityCompat.START)
                     fragmentManagerInit = getSupportFragmentManager()
                     fragmentTransaction = fragmentManagerInit.beginTransaction()
                     fragmentTransaction.replace(R.id.container, AddSalesPersonsFragment())
                     fragmentTransaction.commit()
-                    toolbar.title = "Productos"
+                    toolbar.title = "Añadir trabajador"
                     hideSoftKeyboard()
                     true
                 }

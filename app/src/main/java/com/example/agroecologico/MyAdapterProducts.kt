@@ -32,7 +32,6 @@ class MyAdapterProducts(val products: MutableList<Product>): RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //holder.productImage
         val product: Product = products.get(position)
         Glide.with(holder.productImage)
             .load(product.imageProduct)

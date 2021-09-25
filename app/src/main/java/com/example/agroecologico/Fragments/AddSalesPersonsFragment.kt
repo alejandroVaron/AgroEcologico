@@ -1,17 +1,22 @@
 package com.example.agroecologico.Fragments
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
@@ -40,7 +45,9 @@ class AddSalesPersonsFragment : Fragment() {
     private lateinit var databaseMarket: DatabaseReference
     lateinit var marketStallPersonInFrag: MarketStall
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1555
+    private val RESULT_LOAD_IMG = 1
     private lateinit var photoSalesPerson: String
+    private  var imageChange: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance().getReference("Unit")
@@ -61,11 +68,44 @@ class AddSalesPersonsFragment : Fragment() {
         val view = binding.root
 
         binding.ivSalesPersonPhoto.setOnClickListener{
-            val intentImp = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            this.startActivityForResult(intentImp, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+            var alertDialog: AlertDialog
+
+            alertDialog = AlertDialog.Builder(context).create()
+
+            alertDialog.setButton(
+                AlertDialog.BUTTON_POSITIVE, "Cámara",
+                DialogInterface.OnClickListener{ dialog, id ->
+                    val intentImp:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    this.startActivityForResult(intentImp, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+                    dialog.cancel()
+                })
+
+            alertDialog.setButton(
+                AlertDialog.BUTTON_NEUTRAL, "Galeria",
+                DialogInterface.OnClickListener{ dialog, id ->
+                    val intentGal:Intent = Intent(Intent.ACTION_PICK)
+                    intentGal.setType("image/*")
+                    startActivityForResult(intentGal, RESULT_LOAD_IMG)
+                    dialog.cancel()
+                })
+
+            alertDialog.show()
+            var layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.agroecologicoColor))
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(resources.getColor(R.color.agroecologicoColor))
+            layoutParams.weight = 8f
+            layoutParams.width= resources.getDimensionPixelSize(R.dimen.alertdialog_button_width)
+            layoutParams.gravity = Gravity.CENTER
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).layoutParams = layoutParams
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams = (layoutParams)
         }
         binding.btnAddSalesPerson.setOnClickListener{
-            sendPhotoStorage()
+           if(imageChange){
+               sendPhotoStorage()
+           }else{
+               photoSalesPerson = "https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/salesPersonPhotos%2Fdefault_worker.png?alt=media&token=b2a8fb09-303f-4daa-bb82-5e4e5973ff11"
+               addSalesPersonInMarketStall()
+           }
         }
         return view
     }
@@ -77,7 +117,15 @@ class AddSalesPersonsFragment : Fragment() {
                 val image:Bundle? = data?.extras
                 val productImage: Bitmap? = image?.getParcelable<Bitmap>("data")
                 binding.ivSalesPersonPhoto.setImageBitmap(productImage)
-
+                Log.d("aiuda", "Se guardo la foto!!!")
+                imageChange = true
+            }
+        }
+        if(requestCode== RESULT_LOAD_IMG){
+            if(resultCode == Activity.RESULT_OK){
+                val image: Uri? = data!!.data
+                binding.ivSalesPersonPhoto.setImageURI(image)
+                imageChange = true
             }
         }
     }
@@ -106,7 +154,7 @@ class AddSalesPersonsFragment : Fragment() {
             if (task.isSuccessful) {
                 val downloadUri = task.result
                 photoSalesPerson = downloadUri.toString()
-                addProductInMarketStall()
+                addSalesPersonInMarketStall()
                 Log.d("aiuda", "El link es: $downloadUri")
             } else {
 
@@ -114,9 +162,9 @@ class AddSalesPersonsFragment : Fragment() {
         }
     }
 
-    private fun addProductInMarketStall(){
+    private fun addSalesPersonInMarketStall(){
         var name = binding.etSalesPersonName.text.toString()
-        var salesPerson: SalesPerson = SalesPerson(name, photoSalesPerson)
+        var salesPerson: SalesPerson = SalesPerson(photoSalesPerson, name)
 
         databaseMarket.child(marketStallPersonInFrag.identification!!).child("workers").child("${UUID.randomUUID().toString()}")
             .setValue(salesPerson).addOnSuccessListener {
@@ -130,7 +178,7 @@ class AddSalesPersonsFragment : Fragment() {
 
     private fun clear() {
         binding.etSalesPersonName.text.clear()
-        binding.ivSalesPersonPhoto.setImageResource(android.R.drawable.ic_menu_gallery)
+        binding.ivSalesPersonPhoto.setImageResource(R.drawable.ic_editprofile)
     }
 
 }

@@ -1,21 +1,23 @@
 package com.example.agroecologico.Fragments
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.marginRight
 import androidx.fragment.app.activityViewModels
 import com.example.agroecologico.Models.MarketStall
 import androidx.lifecycle.Observer
@@ -30,6 +32,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.util.*
 
 class addProductMarketStall() : Fragment() {
@@ -38,9 +41,11 @@ class addProductMarketStall() : Fragment() {
     private lateinit var spinner : Spinner
     private lateinit var database: DatabaseReference
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1555
+    private val RESULT_LOAD_IMG = 1
     private lateinit var photoProduct: String
     lateinit var marketStallPersonInFrag: MarketStall
     private lateinit var databaseMarket: DatabaseReference
+    private  var imageChange: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance().getReference("Unit")
@@ -70,11 +75,45 @@ class addProductMarketStall() : Fragment() {
         }
         spinner.adapter = adapter
         binding.ivImageProduct.setOnClickListener{
-            val intentImp = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            this.startActivityForResult(intentImp, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+
+            var alertDialog: AlertDialog
+
+            alertDialog = AlertDialog.Builder(context).create()
+
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Cámara",
+                DialogInterface.OnClickListener{dialog, id ->
+                    val intentImp:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    this.startActivityForResult(intentImp, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+                    dialog.cancel()
+                })
+
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Galeria",
+                DialogInterface.OnClickListener{dialog, id ->
+                    val intentGal:Intent = Intent(Intent.ACTION_PICK)
+                    intentGal.setType("image/*")
+                    startActivityForResult(intentGal, RESULT_LOAD_IMG)
+                    dialog.cancel()
+                })
+
+            alertDialog.show()
+            var layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.agroecologicoColor))
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(resources.getColor(R.color.agroecologicoColor))
+            layoutParams.weight = 8f
+            layoutParams.width= resources.getDimensionPixelSize(R.dimen.alertdialog_button_width)
+            layoutParams.gravity = Gravity.CENTER
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).layoutParams = layoutParams
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams = (layoutParams)
+
         }
         binding.btnAddProduct.setOnClickListener{
-            sendPhotoStorage()
+
+            if(imageChange) {
+                sendPhotoStorage()
+            }else{
+                photoProduct="https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/productsPhotos%2Fdefault_product.png?alt=media&token=cafa2901-e783-48d2-9b06-b5a79b1cea42"
+                addProductInMarketStall()
+            }
         }
         return view
     }
@@ -86,9 +125,17 @@ class addProductMarketStall() : Fragment() {
                 val image:Bundle? = data?.extras
                 val productImage: Bitmap? = image?.getParcelable<Bitmap>("data")
                 binding.ivImageProduct.setImageBitmap(productImage)
-
+                imageChange = true
             }
         }
+        if(requestCode== RESULT_LOAD_IMG){
+            if(resultCode == Activity.RESULT_OK){
+                val image: Uri? = data!!.data
+                binding.ivImageProduct.setImageURI(image)
+                imageChange = true
+            }
+        }
+
     }
 
     fun sendPhotoStorage(){
@@ -116,7 +163,6 @@ class addProductMarketStall() : Fragment() {
                 val downloadUri = task.result
                 photoProduct = downloadUri.toString()
                 addProductInMarketStall()
-                Log.d("aiuda", "El link es: $downloadUri")
             } else {
 
             }
