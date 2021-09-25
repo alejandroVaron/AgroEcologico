@@ -8,14 +8,37 @@
                 android:title="Puesto de venta">
             </item>
             <item
-                android:id="@+id/itemAddProduct"
-                android:icon="@drawable/ic_addproduct"
-                android:title="Añadir producto">
-            </item>
-            <item
                 android:id="@+id/itemEditMarketStall"
                 android:icon="@drawable/ic_editmarketstall"
                 android:title="Editar puesto de venta">
+            </item>
+        </menu>
+    </item>
+    <item android:title="Productos">
+        <menu>
+            <item
+                android:id="@+id/itemProduct"
+                android:icon="@drawable/ic_producticon"
+                android:title="Productos">
+            </item>
+            <item
+                android:id="@+id/itemAddProduct"
+                android:icon="@drawable/ic_addproduct"
+                android:title="Añadir productos">
+            </item>
+        </menu>
+    </item>
+    <item android:title="Trabajadores">
+        <menu>
+            <item
+                android:id="@+id/itemSalesWorker"
+                android:icon="@drawable/ic_editprofile"
+                android:title="Trabajadores">
+            </item>
+            <item
+                android:id="@+id/itemAddSalesPerson"
+                android:icon="@drawable/ic_editmarketstall"
+                android:title="Añadir Vendedor">
             </item>
         </menu>
     </item>

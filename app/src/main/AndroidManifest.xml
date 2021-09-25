@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.agroecologico">
+
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+
+        </intent>
+    </queries>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,33 +17,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".SalesPersonActivity"
+            android:exported="true"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
             android:name=".NavigationDrawerActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".MenuActivitySalesPerson"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".AddWeightUnit"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".CreateMarketStallActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".MenuActivityAdmin"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.MyActionBar" />
+            android:theme="@style/Theme.MyApplication.MyActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication.NoActionBar">
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,9 +74,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-    </queries>
+
 </manifest>

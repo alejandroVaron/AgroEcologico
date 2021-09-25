@@ -25,8 +25,10 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat
-
-
+import com.example.agroecologico.Models.Product
+import com.google.firebase.database.util.JsonMapper
+import com.google.gson.Gson
+import org.json.JSONArray
 
 
 class MainActivity : AppCompatActivity() {
@@ -95,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun validateSalesPerson(email: String?){
         database = FirebaseDatabase.getInstance().getReference("MarketStall")
-        Log.d("dd", "El email es: $email")
+        var json: String
         val query = database.orderByChild("email").equalTo(email)
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -108,9 +110,12 @@ class MainActivity : AppCompatActivity() {
                             menuActivity.putExtra("identification", ds.child("identification").getValue(String::class.java))
                             menuActivity.putExtra("nameMarketStall", ds.child("nameMarketStall").getValue(String::class.java))
                             menuActivity.putExtra("password", ds.child("password").getValue(String::class.java))
+                            json = Gson().toJson(ds.child("products").getValue(Object::class.java))
+
                             menuActivity.putExtra("salesPersonName", ds.child("salesPersonName").getValue(String::class.java))
                             menuActivity.putExtra("salesPersonPhoto", ds.child("salesPersonPhoto").getValue(String::class.java))
                             menuActivity.putExtra("terrainPhoto", ds.child("terrainPhoto").getValue(String::class.java))
+                            menuActivity.putExtra("products", json)
                             startActivity(menuActivity)
                             Toast.makeText(baseContext, "¡ Bienvenido ${ds.child("salesPersonName").getValue(String::class.java)}!",
                                 Toast.LENGTH_SHORT).show()

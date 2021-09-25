@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.AddSalesPersonsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivSalesPersonPhoto"
+            android:layout_width="184dp"
+            android:layout_height="207dp"
+
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="114dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSalesPersonTitle"
+            android:src="@drawable/ic_editprofile" />
+
+        <TextView
+            android:id="@+id/tvSalesPersonTitle"
+            android:layout_width="168dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="122dp"
+            android:fontFamily="@font/baloo_thambi"
+            android:text="@string/add_sales_person_text"
+            android:textSize="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddSalesPerson"
+            android:layout_width="113dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="149dp"
+            android:backgroundTint="@color/agroecologicoColor"
+            android:fontFamily="@font/baloo_thambi"
+            android:text="@string/add_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSalesPersonName" />
+
+        <EditText
+            android:id="@+id/etSalesPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="101dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:hint="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivSalesPersonPhoto" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

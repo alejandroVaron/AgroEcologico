@@ -2,7 +2,6 @@ package com.example.agroecologico.Fragments
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,35 +15,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.view.marginRight
+import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import com.example.agroecologico.Models.MarketStall
 import androidx.lifecycle.Observer
-import com.example.agroecologico.*
-import com.example.agroecologico.Models.Product
+import com.example.agroecologico.ItemViewModel
+import com.example.agroecologico.MenuActivitySalesPerson
+import com.example.agroecologico.Models.MarketStall
+import com.example.agroecologico.Models.SalesPerson
 import com.example.agroecologico.R
-import com.example.agroecologico.databinding.FragmentAddProductMarketStallBinding
-import com.example.agroecologico.databinding.FragmentMarketStallPersonBinding
+import com.example.agroecologico.databinding.FragmentAddSalesPersonBinding
+import com.example.agroecologico.databinding.FragmentAddSalesPersonsBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
-import java.io.InputStream
 import java.util.*
 
-class addProductMarketStall() : Fragment() {
-    private var _binding: FragmentAddProductMarketStallBinding? = null
+
+class AddSalesPersonsFragment : Fragment() {
+    private var _binding: FragmentAddSalesPersonsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var spinner : Spinner
     private lateinit var database: DatabaseReference
+    private lateinit var databaseMarket: DatabaseReference
+    lateinit var marketStallPersonInFrag: MarketStall
     private val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1555
     private val RESULT_LOAD_IMG = 1
-    private lateinit var photoProduct: String
-    lateinit var marketStallPersonInFrag: MarketStall
-    private lateinit var databaseMarket: DatabaseReference
+    private lateinit var photoSalesPerson: String
     private  var imageChange: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,33 +64,25 @@ class addProductMarketStall() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddProductMarketStallBinding.inflate(inflater, container, false)
+        _binding = FragmentAddSalesPersonsBinding.inflate(inflater, container, false)
         val view = binding.root
-        spinner = binding.spinnerUnitSaler
 
-        val adapter = activity?.let {
-            ArrayAdapter<String>(
-                it,
-                android.R.layout.simple_spinner_dropdown_item,
-                getUnitSaler()
-            )
-        }
-        spinner.adapter = adapter
-        binding.ivImageProduct.setOnClickListener{
-
+        binding.ivSalesPersonPhoto.setOnClickListener{
             var alertDialog: AlertDialog
 
             alertDialog = AlertDialog.Builder(context).create()
 
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Cámara",
-                DialogInterface.OnClickListener{dialog, id ->
+            alertDialog.setButton(
+                AlertDialog.BUTTON_POSITIVE, "Cámara",
+                DialogInterface.OnClickListener{ dialog, id ->
                     val intentImp:Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     this.startActivityForResult(intentImp, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
                     dialog.cancel()
                 })
 
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Galeria",
-                DialogInterface.OnClickListener{dialog, id ->
+            alertDialog.setButton(
+                AlertDialog.BUTTON_NEUTRAL, "Galeria",
+                DialogInterface.OnClickListener{ dialog, id ->
                     val intentGal:Intent = Intent(Intent.ACTION_PICK)
                     intentGal.setType("image/*")
                     startActivityForResult(intentGal, RESULT_LOAD_IMG)
@@ -104,16 +98,14 @@ class addProductMarketStall() : Fragment() {
             layoutParams.gravity = Gravity.CENTER
             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).layoutParams = layoutParams
             alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).layoutParams = (layoutParams)
-
         }
-        binding.btnAddProduct.setOnClickListener{
-
-            if(imageChange) {
-                sendPhotoStorage()
-            }else{
-                photoProduct="https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/productsPhotos%2Fdefault_product.png?alt=media&token=cafa2901-e783-48d2-9b06-b5a79b1cea42"
-                addProductInMarketStall()
-            }
+        binding.btnAddSalesPerson.setOnClickListener{
+           if(imageChange){
+               sendPhotoStorage()
+           }else{
+               photoSalesPerson = "https://firebasestorage.googleapis.com/v0/b/agroecologico-6bd81.appspot.com/o/salesPersonPhotos%2Fdefault_worker.png?alt=media&token=b2a8fb09-303f-4daa-bb82-5e4e5973ff11"
+               addSalesPersonInMarketStall()
+           }
         }
         return view
     }
@@ -124,27 +116,27 @@ class addProductMarketStall() : Fragment() {
             if(resultCode == Activity.RESULT_OK){
                 val image:Bundle? = data?.extras
                 val productImage: Bitmap? = image?.getParcelable<Bitmap>("data")
-                binding.ivImageProduct.setImageBitmap(productImage)
+                binding.ivSalesPersonPhoto.setImageBitmap(productImage)
+                Log.d("aiuda", "Se guardo la foto!!!")
                 imageChange = true
             }
         }
         if(requestCode== RESULT_LOAD_IMG){
             if(resultCode == Activity.RESULT_OK){
                 val image: Uri? = data!!.data
-                binding.ivImageProduct.setImageURI(image)
+                binding.ivSalesPersonPhoto.setImageURI(image)
                 imageChange = true
             }
         }
-
     }
 
     fun sendPhotoStorage(){
         var storageRef = Firebase.storage.reference
-        var imagesRef: StorageReference = storageRef.child("productsPhotos/product${UUID.randomUUID().toString()}")
+        var imagesRef: StorageReference = storageRef.child("salesPersonPhotos/salesPerson${UUID.randomUUID().toString()}")
         imagesRef.name == imagesRef.name
-        binding.ivImageProduct.isDrawingCacheEnabled = true
-        binding.ivImageProduct.buildDrawingCache()
-        val bitmap = (binding.ivImageProduct.drawable as BitmapDrawable).bitmap
+        binding.ivSalesPersonPhoto.isDrawingCacheEnabled = true
+        binding.ivSalesPersonPhoto.buildDrawingCache()
+        val bitmap = (binding.ivSalesPersonPhoto.drawable as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
@@ -161,50 +153,32 @@ class addProductMarketStall() : Fragment() {
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val downloadUri = task.result
-                photoProduct = downloadUri.toString()
-                addProductInMarketStall()
+                photoSalesPerson = downloadUri.toString()
+                addSalesPersonInMarketStall()
+                Log.d("aiuda", "El link es: $downloadUri")
             } else {
 
             }
         }
     }
-    private fun addProductInMarketStall(){
-        var name = binding.etNameProduct.text.toString()
-        var price = binding.etPriceProduct.text.toString().toDouble()
-        var unit = binding.spinnerUnitSaler.selectedItem.toString()
-        var product: Product = Product(name, price, photoProduct, unit)
 
-        databaseMarket.child("${marketStallPersonInFrag.identification}").child("products").child("${UUID.randomUUID().toString()}")
-            .setValue(product).addOnSuccessListener {
+    private fun addSalesPersonInMarketStall(){
+        var name = binding.etSalesPersonName.text.toString()
+        var salesPerson: SalesPerson = SalesPerson(photoSalesPerson, name)
+
+        databaseMarket.child(marketStallPersonInFrag.identification!!).child("workers").child("${UUID.randomUUID().toString()}")
+            .setValue(salesPerson).addOnSuccessListener {
+                (activity as MenuActivitySalesPerson).hideSoftKeyboard()
                 clear()
-                Snackbar.make(binding.ivImageProduct, "Se ha agregado el producto exitosamente", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.ivSalesPersonPhoto, "El vendedor ha sido añadido exitosamente", Snackbar.LENGTH_SHORT).show()
             }.addOnFailureListener{
-                Toast.makeText(this@addProductMarketStall.requireActivity(),"El producto no pudo ser añadido", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.ivSalesPersonPhoto,"El vendedor no pudo ser añadido", Snackbar.LENGTH_SHORT).show()
             }
     }
 
     private fun clear() {
-        binding.etNameProduct.text.clear()
-        binding.etPriceProduct.text.clear()
-        binding.spinnerUnitSaler.setSelection(0)
-        binding.ivImageProduct.setImageResource(android.R.drawable.ic_menu_gallery)
-    }
-
-    private fun getUnitSaler(): MutableList<String>{
-        var list: MutableList<String> = mutableListOf<String>()
-        list.add(0, "Seleccione una unidad")
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for(ds in dataSnapshot.children){
-                    list.add(ds.getValue(String::class.java)!!)
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-            }
-        }
-        database.addValueEventListener(postListener)
-        return list
+        binding.etSalesPersonName.text.clear()
+        binding.ivSalesPersonPhoto.setImageResource(R.drawable.ic_editprofile)
     }
 
 }

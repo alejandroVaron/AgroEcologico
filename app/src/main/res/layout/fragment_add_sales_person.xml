@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivSalesPersonPhoto"
+        android:layout_width="184dp"
+        android:layout_height="207dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSalesPersonTitle"
+        tools:srcCompat="@drawable/ic_editprofile" />
+
+    <TextView
+        android:id="@+id/tvSalesPersonTitle"
+        android:layout_width="168dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/add_sales_person_text"
+        android:textSize="21dp"
+        android:fontFamily="@font/baloo_thambi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etSalesPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSalesPersonPhoto"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnAddSalesPerson"
+        android:layout_width="113dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="96dp"
+        android:text="@string/add_label"
+        android:backgroundTint="@color/agroecologicoColor"
+        android:fontFamily="@font/baloo_thambi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSalesPersonName" />
+</androidx.constraintlayout.widget.ConstraintLayout>
