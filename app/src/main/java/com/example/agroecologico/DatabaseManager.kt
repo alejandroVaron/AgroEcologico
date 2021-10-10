@@ -4,6 +4,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.example.agroecologico.Models.MarketStall
+import com.example.agroecologico.Models.Order
 import com.example.agroecologico.Models.Product
 import com.example.agroecologico.Models.SalesPerson
 import com.google.firebase.database.*
@@ -49,6 +50,7 @@ class DatabaseManager {
                             dataSnapshot.child("cellphone").getValue(String::class.java),
                             products,
                             workers,
+                            mutableListOf<Order>(),
                             dataSnapshot.child("terrainPhoto").getValue(String::class.java),
                             dataSnapshot.child("salesPersonName").getValue(String::class.java),
                             dataSnapshot.child("salesPersonPhoto").getValue(String::class.java),
@@ -83,6 +85,7 @@ class DatabaseManager {
                             ds.child("salesUnitProduct").getValue(String::class.java))
                         products.add(product)
                     }
+                    Log.d("aiuda", "Estos son los productos: ${products}")
                 }
 
             }

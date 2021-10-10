@@ -118,6 +118,10 @@ class AddSalesPersonsFragment : Fragment() {
                 val productImage: Bitmap? = image?.getParcelable<Bitmap>("data")
                 binding.ivSalesPersonPhoto.setImageBitmap(productImage)
                 Log.d("aiuda", "Se guardo la foto!!!")
+
+
+
+
                 imageChange = true
             }
         }

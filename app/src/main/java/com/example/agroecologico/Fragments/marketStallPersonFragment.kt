@@ -1,5 +1,6 @@
 package com.example.agroecologico.Fragments
 
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -8,16 +9,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.agroecologico.ItemViewModel
+import com.example.agroecologico.MenuActivitySalesPerson
 import com.example.agroecologico.Models.MarketStall
+import com.example.agroecologico.SendEmailService
 import com.example.agroecologico.databinding.FragmentMarketStallPersonBinding
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import org.apache.poi.hssf.usermodel.HSSFCell
+import org.apache.poi.hssf.usermodel.HSSFRow
+import org.apache.poi.hssf.usermodel.HSSFSheet
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.Exception
+import java.util.jar.Manifest
 
 class marketStallPersonFragment : Fragment() {
 
@@ -30,8 +42,11 @@ class marketStallPersonFragment : Fragment() {
 
     private var firebaseSto: FirebaseStorage = FirebaseStorage.getInstance()
 
+    private var filePath: File = File(context?.getExternalFilesDir(null), "Orders.xls")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestPermissions(arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE), PackageManager.PERMISSION_GRANTED )
     }
 
     override fun onCreateView(
@@ -48,6 +63,19 @@ class marketStallPersonFragment : Fragment() {
             bringData()
             downloadImage()
         })
+
+        binding.btnSendMail.setOnClickListener {
+
+            Thread {
+                try {
+                    (activity as MenuActivitySalesPerson).bringOrders()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }.start()
+
+        }
+
         return view
     }
 
