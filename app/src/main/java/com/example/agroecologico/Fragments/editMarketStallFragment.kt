@@ -105,6 +105,7 @@ class editMarketStallFragment : Fragment() {
             marketStallPersonInFrag.cellphone,
             marketStallPersonInFrag.products,
             marketStallPersonInFrag.workers,
+            marketStallPersonInFrag.orders,
             photoMarketStall,
             marketStallPersonInFrag.salesPersonName,
             marketStallPersonInFrag.salesPersonPhoto)

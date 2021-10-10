@@ -23,15 +23,19 @@ import org.json.JSONObject
 import androidx.core.app.ActivityCompat
 
 import android.content.pm.PackageManager
+import android.os.AsyncTask
 
 import androidx.core.content.ContextCompat
 import com.example.agroecologico.Models.Product
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.database.util.JsonMapper
 import com.google.gson.Gson
+import gen._third_party._android_deps._com_android_support_support_compat_java__res.srcjar.R.id.async
+import gen._third_party._android_deps._com_android_support_support_core_utils_java__res.srcjar.R.id.async
 import org.json.JSONArray
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var viewBinding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
@@ -46,9 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
     // Choose authentication providers
     val providers = arrayListOf(
-        AuthUI.IdpConfig.EmailBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build())
-    //AuthUI.IdpConfig.FacebookBuilder().build()
+        AuthUI.IdpConfig.FacebookBuilder().build())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,13 +118,15 @@ class MainActivity : AppCompatActivity() {
                             menuActivity.putExtra("salesPersonPhoto", ds.child("salesPersonPhoto").getValue(String::class.java))
                             menuActivity.putExtra("terrainPhoto", ds.child("terrainPhoto").getValue(String::class.java))
                             menuActivity.putExtra("products", json)
-                            startActivity(menuActivity)
-                            Toast.makeText(baseContext, "¡ Bienvenido ${ds.child("salesPersonName").getValue(String::class.java)}!",
-                                Toast.LENGTH_SHORT).show()
+                        startActivity(menuActivity)
+                        Toast.makeText(baseContext, "¡ Bienvenido ${ds.child("salesPersonName").getValue(String::class.java)}!",
+                            Toast.LENGTH_SHORT).show()
                     }
 
                 }else{
-                    Toast.makeText(baseContext, "El usuario o la contraseña es incorrecta",
+                    var menuActivity = Intent(this@MainActivity, MenuActivitySalesPerson::class.java)
+                    startActivity(menuActivity)
+                    Toast.makeText(baseContext, "¡ El usuario no tiene un puesto de venta asignado!",
                         Toast.LENGTH_SHORT).show()
                 }
             }
@@ -141,10 +145,8 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             Log.d(TAG, "Se pudo hacer la conexión con google")
             Log.d(TAG, "Pasé al metodo onSignInResult")
-            Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
             val user = FirebaseAuth.getInstance().currentUser
-            startActivity(Intent(this, MenuActivityAdmin::class.java))
-            // ...
+            validateTypeUser(auth.currentUser?.email)
         } else {
             Log.d(TAG, "No se pudo hacer la conexión con google")
 
