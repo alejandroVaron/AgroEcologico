@@ -11,6 +11,9 @@ class ItemViewModel : ViewModel(){
 
     var marketStall: MutableLiveData<MarketStall> = MutableLiveData<MarketStall>()
 
+    var marketStalls: MutableLiveData<MutableList<MarketStall>> = MutableLiveData<MutableList<MarketStall>>()
+
+
     fun getMarketStall(): LiveData<MarketStall>{
         return marketStall
     }
@@ -19,5 +22,12 @@ class ItemViewModel : ViewModel(){
         marketStall.value = marketS
     }
 
+    fun getMarketStalls(): LiveData<MutableList<MarketStall>>{
+        return marketStalls
+    }
+
+    fun setMarketStall(marketStallls: MutableList<MarketStall>){
+        marketStalls.value = marketStallls
+    }
 }
 

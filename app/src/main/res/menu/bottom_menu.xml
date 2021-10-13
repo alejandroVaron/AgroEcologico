@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/itemProfilePurchaser"
+        android:title="Perfil"
+        android:icon="@drawable/ic_editprofile"/>
+    <item android:id="@+id/itemMarketsPurchaser"
+        android:title="Puestos de venta"
+        android:icon="@drawable/ic_store"/>
+    <item android:id="@+id/itemCartPurchaser"
+        android:title="Carrito de compra"
+        android:icon="@drawable/ic_stall"/>
+
+</menu>

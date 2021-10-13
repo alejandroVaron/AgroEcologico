@@ -4,10 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Informacion/ss/app/src/main/res/layout/activity_main.xml" value="0.2907608695652174" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_addproduct.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_editmarketstall.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_editprofile.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_group.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_home.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_launcher_background.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_marketstall.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_marketstallslist.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_minus.xml" value="0.3046875" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_plus.xml" value="0.3046875" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_producticon.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_signout.xml" value="0.23854166666666668" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/drawable/ic_stall.xml" value="0.1" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_add_weight_unit.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_create_market_stall.xml" value="0.25" />
-        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_menu_admin.xml" value="0.33" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_menu_purchaser.xml" value="0.22" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_menu_sales_person.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/activity_prueba.xml" value="0.25" />
@@ -19,14 +34,22 @@
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_add_product_market_stall.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_add_sales_person.xml" value="0.2755208333333333" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_add_sales_persons.xml" value="0.33" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_cart_purchaser.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_edit_market_stall.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_first.xml" value="0.20520833333333333" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_market_stall_person.xml" value="0.25" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_product_market_stall.xml" value="0.25" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_products_market_stall.xml" value="0.25" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_profile_purchaser.xml" value="0.24102564102564103" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_sales_person.xml" value="0.1" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_second.xml" value="0.20520833333333333" />
-        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_product.xml" value="0.5" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/fragment_stores_purchaser.xml" value="0.25" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_marketstall.xml" value="0.25" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_product.xml" value="0.33" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_product_order.xml" value="0.25" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_product_store.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/layout/item_salesperson.xml" value="0.33" />
+        <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/menu/bottom_menu.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/menu/drawer_menu.xml" value="0.33" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Repositorios/Agroecologico/AgroEcologico/app/src/main/res/menu/overflowmenu.xml" value="0.5" />

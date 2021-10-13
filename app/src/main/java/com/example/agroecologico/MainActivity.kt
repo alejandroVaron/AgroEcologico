@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity(){
     private lateinit var auth: FirebaseAuth
     private lateinit var googleClient: GoogleSignInClient
     private lateinit var database: DatabaseReference
-
+    private var clientAddress: String? = ""
+    private var clientCellphone: String? = ""
+    private var clientName: String? = ""
 
     //Constants
     private companion object{
@@ -77,9 +79,6 @@ class MainActivity : AppCompatActivity(){
         }
 
         viewBinding.btnSignInGoogle.setOnClickListener{
-            Log.d(TAG, "ENTRÉ!!!! AL BOTÓN")
-            Log.d(TAG, "onCreate: begin Google SignIn")
-
             val signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
@@ -140,16 +139,12 @@ class MainActivity : AppCompatActivity(){
 
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        Log.d(TAG, "Pasé al metodo onSignInResult")
         val response = result.idpResponse
         if (result.resultCode == RESULT_OK) {
-            Log.d(TAG, "Se pudo hacer la conexión con google")
-            Log.d(TAG, "Pasé al metodo onSignInResult")
             val user = FirebaseAuth.getInstance().currentUser
             validateTypeUser(auth.currentUser?.email)
         } else {
             Log.d(TAG, "No se pudo hacer la conexión con google")
-
         }
     }
 
@@ -163,7 +158,9 @@ class MainActivity : AppCompatActivity(){
                     dsEmail = ds.child("email").getValue(String::class.java)
                     if(email == dsEmail){
                         type = ds.child("typeUser").getValue(Int::class.java)
-                        Log.d("aiuda", "El tipo de usuario del auth es: $type")
+                        clientAddress = ds.child("clientAddress").getValue(String::class.java)
+                        clientCellphone = ds.child("clientCellphone").getValue().toString()
+                        clientName = ds.child("clientName").getValue(String::class.java)
                     }
                 }
                 startActivityUser(type)
@@ -181,7 +178,12 @@ class MainActivity : AppCompatActivity(){
         }else if(typeUser == 1){
             validateSalesPerson(auth.currentUser?.email)
         }else if(typeUser == 2){
-
+            var intent = Intent(this, MenuActivityPurchaser::class.java)
+            intent.putExtra("clientAddress",clientAddress)
+            intent.putExtra("clientEmail",auth.currentUser?.email)
+            intent.putExtra("clientCellphone",clientCellphone)
+            intent.putExtra("clientName",clientName)
+            startActivity(intent)
         }
     }
 

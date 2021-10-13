@@ -5,11 +5,12 @@
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
-
         </intent>
     </queries>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,51 +19,56 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".SalesPersonActivity"
+            android:name=".MenuActivityPurchaser"
             android:exported="true"
-            android:configChanges="screenSize|orientation"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
             android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".SalesPersonActivity"
+            android:configChanges="screenSize|orientation"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".NavigationDrawerActivity"
-            android:exported="true"
             android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MenuActivitySalesPerson"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddWeightUnit"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CreateMarketStallActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MenuActivityAdmin"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.MyActionBar"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SignUpActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:configChanges="screenSize|orientation"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
